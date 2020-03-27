@@ -1,0 +1,55 @@
+<div style="text-align:center">
+    <h1>
+        Welcome to {{ title }}!
+    </h1>
+</div>
+<cdk-virtual-scroll-viewport #viewPort scrolledIndexChange="test" class="example-viewport">
+    <table #myTable mat-table [dataSource]="dataSource" class="mat-elevation-z8 innerTable">
+
+        <ng-container matColumnDef="position">
+          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="test">
+          <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.test}} </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row (click)="trigChangeDetection()" *matRowDef="let row; let i = index; columns: displayedColumns;" matRipple class="element-row" [appRowDetails]="row" [DetailRow]="rowDetailTpl" [Index]="i"></mat-row>
+
+    </table>
+</cdk-virtual-scroll-viewport>
+
+<ng-template #rowDetailTpl let-element let-index>
+    <div class="mat-row detail-row" [@detailExpand] (@detailExpand.start)="onRowExpand($event, element.data)" style="overflow: hidden">
+        <div>
+        <p>tada {{element.data.position}}</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis vulputate enim nulla aliquet porttitor lacus. Elit pellentesque habitant morbi tristique senectus et netus. Mauris pellentesque pulvinar pellentesque habitant. Pharetra vel turpis nunc eget lorem. Sed tempus urna et pharetra pharetra massa massa ultricies mi. Diam quam nulla porttitor massa id neque aliquam vestibulum morbi. Consectetur adipiscing elit ut aliquam purus sit amet. Interdum varius sit amet mattis vulputate enim. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh. Mi in nulla posuere sollicitudin aliquam ultrices sagittis.</p>
+        <div class="misc-info">
+            <mat-accordion>
+                <mat-expansion-panel #panel (click)="trigChangeDetection()" (afterExpand)="miscExpand(panel, element, index)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            misc-info
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris a diam maecenas sed enim ut. Ultricies leo integer malesuada nunc. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam. Fringilla phasellus faucibus scelerisque eleifend donec pretium. In vitae turpis massa sed elementum tempus egestas sed. Purus ut faucibus pulvinar elementum. At quis risus sed vulputate odio ut enim blandit volutpat. Massa tincidunt dui ut ornare. Dui id ornare arcu odio ut sem nulla. Eu tincidunt tortor aliquam nulla facilisi. Accumsan in nisl nisi scelerisque. Quisque id diam vel quam elementum pulvinar etiam non. Cras adipiscing enim eu turpis egestas pretium.
+
+Enim sed faucibus turpis in eu mi. Velit ut tortor pretium viverra suspendisse potenti. Massa sapien faucibus et molestie. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. A lacus vestibulum sed arcu non odio euismod lacinia. Ultricies leo integer malesuada nunc vel risus commodo viverra maecenas. Purus sit amet volutpat consequat mauris. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Scelerisque fermentum dui faucibus in ornare quam. Eget mi proin sed libero enim sed faucibus. Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida.
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis lectus nulla at volutpat diam. Auctor augue mauris augue neque gravida. Vitae purus faucibus ornare suspendisse sed nisi lacus sed. Pulvinar elementum integer enim neque volutpat ac tincidunt. Congue nisi vitae suscipit tellus mauris a diam. Nisl nunc mi ipsum faucibus vitae. Pretium lectus quam id leo. Dui faucibus in ornare quam viverra orci sagittis eu. Mattis rhoncus urna neque viverra justo nec ultrices dui sapien. Sit amet porttitor eget dolor. Venenatis tellus in metus vulputate eu. Mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan. Eu sem integer vitae justo eget magna fermentum iaculis. Facilisis mauris sit amet massa vitae. In massa tempor nec feugiat nisl pretium. Tempus egestas sed sed risus. Orci eu lobortis elementum nibh.
+
+            Ullamcorper velit sed ullamcorper morbi. Volutpat est velit egestas dui id ornare. Dapibus ultrices in iaculis nunc sed augue lacus. Convallis a cras semper auctor neque vitae tempus. Ultrices neque ornare aenean euismod elementum nisi. Rhoncus urna neque viverra justo nec ultrices dui sapien eget. Rhoncus dolor purus non enim praesent elementum. Ornare arcu odio ut sem nulla pharetra diam. Pharetra convallis posuere morbi leo urna molestie at elementum. Massa sed elementum tempus egestas sed sed risus. Magna fringilla urna porttitor rhoncus dolor. Facilisis mauris sit amet massa vitae tortor condimentum. Cursus turpis massa tincidunt dui ut ornare.
+        </p>
+        </div>
+	</div>
+</ng-template>
